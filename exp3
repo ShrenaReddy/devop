@@ -1,0 +1,138 @@
+RegistrationController.java
+
+package com.example.registration_service;
+import org.springframework.web.bind.annotation.*;
+@RestController
+@RequestMapping("/api")
+public class RegistrationController {
+   @GetMapping
+   public String home() {
+   	return "Event Registration Service is running successfully";
+   }
+   @PostMapping("/register")
+   public String register(@RequestBody Student student) {
+       return "Registration Successful!\n\n"
+               + "Name: " + student.getName()
+               + "\nEmail: " + student.getEmail()
+               + "\nDepartment: " + student.getDepartment()
+               + "\nEvent: " + student.getEvent();
+   }
+}
+
+
+
+
+RegistrationServiceApplication.java
+
+
+package com.example.registration_service;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class RegistrationServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(RegistrationServiceApplication.class, args);
+    }
+}
+
+
+Student.java:
+
+package com.example.registration_service;
+public class Student {
+   private String name;
+   private String email;
+   private String department;
+   private String event;
+   public Student() {}
+   public String getName() {
+       return name;
+   }
+   public void setName(String name) {
+       this.name = name;
+   }
+   public String getEmail() {
+       return email;
+   }
+   public void setEmail(String email) {
+       this.email = email;
+   }
+   public String getDepartment() {
+       return department;
+   }
+   public void setDepartment(String department) {
+       this.department = department;
+   }
+   public String getEvent() {
+       return event;
+   }
+   public void setEvent(String event) {
+       this.event = event;
+   }
+}
+
+
+RegistrationServiceApplicationTests.java
+package com.example.registration_service;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class RegistrationServiceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+
+
+
+
+
+EVENT-SERVICE:
+
+EventController.java:
+
+package com.example.event_service;
+import org.springframework.web.bind.annotation.*;
+@RestController
+@RequestMapping("/api")
+public class EventController {
+   @GetMapping("/events")
+   public String getEvents() {
+       return """
+               Available Events:
+               1. Advanced Python Workshop
+               2. Java Full Stack Workshop
+               3. AI & Machine Learning Seminar
+               4. Cloud Computing Bootcamp
+               5. Web Development Workshop
+               6. Cyber Security Awareness
+               7. Data Science Workshop
+               8. Android App Development
+               """;
+   }
+   @PostMapping("/register")
+   public String registerStudent(@RequestBody Student student) {
+       return """
+               Registration Successful!
+                              
+               Name: %s
+               Email: %s
+               Department: %s
+               Selected Event: %s
+               """
+               .formatted(
+                       student.getName(),
+                       student.getEmail(),
+                       student.getDepartment(),
+                       student.getEvent()
+               );
+   }
+}
+
