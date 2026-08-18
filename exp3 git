@@ -1,0 +1,168 @@
+1. Go to the project folder
+cd /home/cse/24WH1A05D4_Dev/EventRegistrationMicroservices
+
+Check:
+
+pwd
+
+It should show:
+
+/home/cse/24WH1A05D4_Dev/EventRegistrationMicroservices
+2. Check that both services are present
+ls
+
+You should have:
+
+event-service
+registration-service
+
+⚠️ You also have a folder called:
+
+registration-service (1)
+
+Do not add that folder unless you actually need it. Your required service is:
+
+registration-service
+3. Check both services
+ls event-service
+
+and:
+
+ls registration-service
+
+You should see files such as pom.xml, src, mvnw, etc.
+
+4. Initialize Git
+
+If Git is already initialized, this command is harmless:
+
+git init
+
+5. Configure your Git identity
+git config --global user.name "Shrena Reddy"
+
+Use your actual GitHub email:
+
+git config --global user.email "YOUR_GITHUB_EMAIL"
+
+Check:
+
+git config --global --list
+6. Create the root .gitignore
+nano .gitignore
+
+Put this inside:
+
+target/
+*.class
+*.log
+.classpath
+.project
+.settings/
+
+Save with:
+
+Ctrl + O → Enter → Ctrl + X
+
+This prevents Maven-generated target files from being pushed.
+
+7. Check Git status
+git status
+8. Add BOTH services
+
+This is the important command:
+
+git add event-service registration-service .gitignore
+
+Or simply:
+
+git add .
+
+I recommend:
+
+git add .
+9. Check what will be committed
+git status
+
+You should see files from both:
+
+event-service/...
+registration-service/...
+.gitignore
+
+You should not see:
+
+target/
+
+files if your .gitignore is working.
+
+10. Create the initial commit
+git commit -m "Add event and registration microservices"
+
+11. Use main as the branch
+git branch -M main
+
+Check:
+
+git branch
+
+You should see:
+
+* main
+12. Remove the incorrect remote
+
+Because you previously added:
+
+github.com
+
+remove it:
+
+git remote remove origin
+
+Check:
+
+git remote -v
+
+It should show nothing.
+
+13. Add your actual GitHub repository
+
+If your GitHub repository is named:
+
+event-registration-microservices
+
+and your GitHub username is:
+
+ShrenaReddy
+
+use:
+
+git remote add origin https://github.com/ShrenaReddy/event-registration-microservices.git
+Verify it
+git remote -v
+
+You should get:
+
+origin  https://github.com/ShrenaReddy/event-registration-microservices.git (fetch)
+origin  https://github.com/ShrenaReddy/event-registration-microservices.git (push)
+
+14. Push BOTH services to GitHub
+git push -u origin main
+
+When it asks:
+
+Username for 'https://github.com':
+
+enter:
+
+ShrenaReddy
+
+When it asks:
+
+Password for 'https://github.com':
+
+Do not enter your normal GitHub password.
+
+Enter your GitHub Personal Access Token (PAT).
+
+When you paste the token, the terminal may appear to show nothing. That is normal. Paste it and press Enter.
