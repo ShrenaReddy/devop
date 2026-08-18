@@ -1,0 +1,167 @@
+Step 1 — Check Git version
+git --version
+
+Expected:
+
+git version 2.54.0.windows.1
+Step 2 — Configure Git username
+git config --global user.name "Shrena Reddy"
+Step 3 — Configure Git email
+git config --global user.email "24wh1a05d4@bvrithyderabad.edu.in"
+Step 4 — Display Git configuration
+git config --list
+
+You should see your username/email along with other Git settings.
+
+Step 5 — Create a project folder
+
+You already have the GitDemo folder, so dont create it again.
+
+If starting completely from the beginning:
+
+cd C:\Users\shren\OneDrive\Desktop\24WH1A05D4_git
+mkdir GitDemo
+cd GitDemo
+Step 6 — Initialize Git repository
+git init
+
+Expected:
+
+Initialized empty Git repository in ...
+Step 7 — Check repository status
+git status
+
+Initially:
+
+On branch master
+No commits yet
+nothing to commit
+Step 8 — Create a file
+echo Hello Git > file.txt
+
+Now check:
+
+git status
+
+You should see:
+
+Untracked files:
+    file.txt
+Step 9 — git add
+git add file.txt
+
+Then:
+
+git status
+
+You should see:
+
+Changes to be committed:
+    new file: file.txt
+Step 10 — git commit
+git commit -m "Add file.txt"
+
+Expected:
+
+[master abc1234] Add file.txt
+
+Step 11 — git log
+git log
+
+This displays your commit history.
+
+You should see your commit message:
+
+Add file.txt
+Step 12 — git diff
+
+First modify the file:
+
+echo Welcome to Git >> file.txt
+
+Now execute:
+
+git diff
+
+Git will show the change you made after the previous commit.
+
+After checking the difference, stage and commit it:
+
+git add file.txt
+git commit -m "Update file.txt"
+
+Step 13 — git branch
+
+Check existing branches:
+git branch
+
+You should see:
+* master
+
+Create a new branch:
+git branch feature
+
+Check again:
+git branch
+
+You should see:
+  feature
+* master
+Step 14 — git checkout
+
+Switch to the feature branch:
+git checkout feature
+
+Expected:
+Switched to branch 'feature'
+
+You can also use the modern command: 
+git switch feature
+
+Step 15 — Make a change and git merge
+While on feature, create another file:
+echo This is my feature > feature.txt
+
+Stage and commit it:
+git add feature.txt
+git commit -m "Add feature"
+
+Now return to master:
+git checkout master
+
+Merge the feature:
+git merge feature
+
+Expected something like:
+
+Fast-forward
+ feature.txt | 1 +
+Step 16 — git remote -v
+
+Now check whether a remote repository is connected:
+git remote -v
+
+If you havent connected GitHub, nothing may appear. Thats okay.
+
+If connected, you will see something like:
+
+origin  https://github.com/username/repository.git (fetch)
+origin  https://github.com/username/repository.git (push)
+
+Step 17 — git fetch
+If you have a remote repository:
+git fetch
+
+This downloads information about changes from the remote repository without merging them.
+If you dont have a remote, this command may not do anything useful. Thats okay for local practice.
+
+Step 18 — git pull
+
+If you have a remote repository connected:
+git pull origin master
+
+If your GitHub branch is main instead of master, use:
+git pull origin main
+
+If everything is already synchronized, you may see:
+Already up to date.
